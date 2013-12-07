@@ -7,12 +7,10 @@
 #TODO use graphic interface option
 #TODO use not only bmp files
 #TODO choose size output
+#TODO use OOP
 
 import Image
 import ImageColor
-
-#bmp_img = '/home/robinson/python_glcd/tux04.bmp'
-#vetor   = '/home/robinson/python_glcd/tux04.txt'
 
 bmp_img  = 'tux04.bmp'
 vetor_c =  'tux05.c'
@@ -58,10 +56,3 @@ while y < 128:
 f.write('};')
 f.write('\n')
 f.close()
-
-
-# muito importante essa funcao
-# import Image
-# im = Image.open("tux04.bmp")
-# list_of_pixels = list(im.getdata())
-# print list_of_pixels[0]
