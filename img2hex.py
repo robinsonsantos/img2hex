@@ -53,8 +53,8 @@ class Img2hex(object):
         while row < MAX_ROW:
             column = 0
             while column < MAX_COLUMN:
+                rgb_value = self.__img_file.getpixel((column, row))
                 for i in xrange(8):
-                    rgb_value = self.__img_file.getpixel((column, row))
                     if (i == 0):
                         octet = (rgb_value & 1)
                     else:
@@ -75,7 +75,7 @@ def main():
         print 'Begin'
         img2hex = Img2hex()
         img2hex.open_img(sys.argv[FILE_NAME])
-        img2hex.open_hex('teste.c')
+        img2hex.open_hex('teste2.c')
         img2hex.generate()
         print 'End'
 
