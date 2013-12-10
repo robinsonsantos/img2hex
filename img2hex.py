@@ -58,7 +58,7 @@ class Img2hex(object):
             column = 0
             while column < MAX_COLUMN:
                 rgb_value = self.__img_file.getpixel((column, row))
-                # 8 because is one byte
+                # 8 because the value is 0 to 255 (one byte)
                 for i in xrange(8):
                     if (i == 0):
                         octet = (rgb_value & 1)
