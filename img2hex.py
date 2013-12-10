@@ -6,7 +6,7 @@
 #TODO use not only bmp files
 #TODO use output file define by user
 #TODO convert image to grayscale
-#TODO resize image
+#TODO resize image to 128 per 240 pixels
 
 import sys
 import re
@@ -37,6 +37,10 @@ class Img2hex(object):
         except:
             print 'Could not open the hex file'
             sys.exit()
+    
+    def show_all_pixels(self):
+         list_pixels = list(self.__img_file.getdata())
+         print list_pixels
 
     def convert_to_grayscale(self):
         pass
@@ -54,6 +58,7 @@ class Img2hex(object):
             column = 0
             while column < MAX_COLUMN:
                 rgb_value = self.__img_file.getpixel((column, row))
+                # 8 because is one byte
                 for i in xrange(8):
                     if (i == 0):
                         octet = (rgb_value & 1)
@@ -75,6 +80,7 @@ def main():
         print 'Begin'
         img2hex = Img2hex()
         img2hex.open_img(sys.argv[FILE_NAME])
+        #img2hex.show_all_pixels()
         img2hex.open_hex('teste2.c')
         img2hex.generate()
         print 'End'
