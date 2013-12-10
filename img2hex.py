@@ -6,6 +6,7 @@
 #TODO use not only bmp files
 #TODO use output file define by user
 #TODO convert image to grayscale
+#TODO resize image
 
 import sys
 import re
@@ -54,25 +55,20 @@ class Img2hex(object):
             while column < MAX_COLUMN:
                 for i in xrange(8):
                     rgb_value = self.__img_file.getpixel((column, row))
-
                     if (i == 0):
                         octet = (rgb_value & 1)
                     else:
                         octet = octet << 1
                         octet = octet | (rgb_value & 1)
-
                     column = column + 1
-
                 octet = hex(octet)
                 self.__hex_file.write(str(octet))
                 self.__hex_file.write(', ')
-
             row = row + 1
             self.__hex_file.write('\n\t')
         self.__hex_file.write('};')
         self.__hex_file.write('\n')
         self.__hex_file.close()
-
 
 def main():
     if len(sys.argv) == 2:
