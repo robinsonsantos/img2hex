@@ -7,6 +7,7 @@
 #TODO use output file define by user
 #TODO convert image to grayscale
 #TODO resize image to 128 per 240 pixels
+#TODO any image to bmp
 
 import sys
 import Image
