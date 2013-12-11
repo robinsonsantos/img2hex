@@ -14,7 +14,7 @@ import Image
 
 FILE_NAME  = 1
 MAX_ROW    = 128
-MAX_COLUMN = 128
+MAX_COLUMN = 240
 
 class Img2hex(object):
     ''' None '''
@@ -42,8 +42,14 @@ class Img2hex(object):
          list_pixels = list(self.__img_file.getdata())
          print list_pixels
 
-    def convert_to_grayscale(self):
-        pass
+    def convert_to_black_write(self):
+        self.__img_file = self.__img__file.convert('1')
+
+    def img_resize(self):
+        self.__img_file = self.__img__file.resize((MAX_COLUMN, MAX_ROW))
+
+    def img_show(self):
+        self.__img_file.show()
           
     def generate(self):
         column = 0
