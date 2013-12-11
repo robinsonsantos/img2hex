@@ -18,7 +18,7 @@ MAX_COLUMN = 240
 class Img2hex(object):
     ''' None '''
     def __init__(self):
-        self.__img_name = None
+        self.img_name = None
         self.__img_file = None
         self.__hex_file = None
 
@@ -26,8 +26,8 @@ class Img2hex(object):
         try:
             self.__img_file = Image.open(img_file)
             #TODO improve it
-            self.__img_name = img_file.split('.')[0]
-            self.__img_name = self.__img_name + '.c'
+            self.img_name = img_file.split('.')[0]
+            self.img_name = self.img_name + '.c'
             print 'Image file opened sucessfully'
         except:
             print 'Could not open the image file'
@@ -92,7 +92,7 @@ def main():
         img2hex = Img2hex()
         img2hex.open_img(sys.argv[FILE_NAME])
         #img2hex.show_all_pixels()
-        img2hex.open_hex('tux.c')
+        img2hex.open_hex(img2hex.img_name)
         img2hex.img_resize()
         img2hex.convert_to_black_white()
         img2hex.generate()
