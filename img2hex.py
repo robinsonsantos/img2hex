@@ -14,7 +14,7 @@ import Image
 
 FILE_NAME  = 1
 MAX_ROW    = 128
-MAX_COLUMN = 240
+MAX_COLUMN = 128
 
 class Img2hex(object):
     ''' None '''
