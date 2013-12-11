@@ -26,9 +26,7 @@ class Img2hex(object):
     def open_img(self, img_file):
         try:
             self.__img_file = Image.open(img_file)
-            #TODO improve it
             self.img_name = img_file.split('.')[0]
-            self.img_name = self.img_name + '.c'
             print 'Image file opened sucessfully'
         except:
             print 'Could not open the image file'
@@ -61,7 +59,7 @@ class Img2hex(object):
         rgb_value = 0
         octet = 0
         self.__hex_file.write('const unsigned char ')
-        self.__hex_file.write('tux')
+        self.__hex_file.write(self.img_name)
         self.__hex_file.write('[] = {\n\t')
         while row < MAX_ROW:
             column = 0
@@ -93,7 +91,8 @@ def main():
         img2hex = Img2hex()
         img2hex.open_img(sys.argv[FILE_NAME])
         #img2hex.show_all_pixels()
-        img2hex.open_hex(img2hex.img_name)
+        #TODO improve it
+        img2hex.open_hex(img2hex.img_name + '.c')
         img2hex.img_resize()
         img2hex.convert_to_black_white()
         img2hex.generate()
