@@ -42,11 +42,11 @@ class Img2hex(object):
          list_pixels = list(self.__img_file.getdata())
          print list_pixels
 
-    def convert_to_black_write(self):
-        self.__img_file = self.__img__file.convert('1')
+    def convert_to_black_white(self):
+        self.__img_file = self.__img_file.convert('1')
 
     def img_resize(self):
-        self.__img_file = self.__img__file.resize((MAX_COLUMN, MAX_ROW))
+        self.__img_file = self.__img_file.resize((MAX_COLUMN, MAX_ROW))
 
     def img_show(self):
         self.__img_file.show()
@@ -92,7 +92,10 @@ def main():
         img2hex.open_img(sys.argv[FILE_NAME])
         #img2hex.show_all_pixels()
         img2hex.open_hex('tux.c')
+        img2hex.img_resize()
+        img2hex.convert_to_black_white()
         img2hex.generate()
+        img2hex.img_show()
         print 'End'
 
 if __name__ == "__main__":
