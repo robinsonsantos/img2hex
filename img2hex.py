@@ -14,7 +14,7 @@ import Image
 
 FILE_NAME  = 1
 MAX_ROW    = 128
-MAX_COLUMN = 240
+MAX_COLUMN = 128
 
 class Img2hex(object):
     ''' None '''
@@ -51,15 +51,14 @@ class Img2hex(object):
         rgb_value = 0
         octet = 0
         self.__hex_file.write('const unsigned char ')
-        self.__hex_file.write('tux04')
+        self.__hex_file.write('tux')
         self.__hex_file.write('[] = {\n\t')
 
         while row < MAX_ROW:
             column = 0
             while column < MAX_COLUMN:
-                rgb_value = self.__img_file.getpixel((column, row))
-                # 8 because the value is 0 to 255 (one byte)
                 for i in xrange(8):
+                    rgb_value = self.__img_file.getpixel((column, row))
                     if (i == 0):
                         octet = (rgb_value & 1)
                     else:
@@ -68,7 +67,12 @@ class Img2hex(object):
                     column = column + 1
                 octet = hex(octet)
                 self.__hex_file.write(str(octet))
-                self.__hex_file.write(', ')
+
+                if row == MAX_ROW and column == MAX_COLUMN:
+                    self.__hex_file.write(' ')
+                else:
+                    self.__hex_file.write(', ')
+
             row = row + 1
             self.__hex_file.write('\n\t')
         self.__hex_file.write('};')
@@ -81,7 +85,7 @@ def main():
         img2hex = Img2hex()
         img2hex.open_img(sys.argv[FILE_NAME])
         #img2hex.show_all_pixels()
-        img2hex.open_hex('teste2.c')
+        img2hex.open_hex('tux.c')
         img2hex.generate()
         print 'End'
 
