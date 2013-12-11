@@ -9,7 +9,6 @@
 #TODO resize image to 128 per 240 pixels
 
 import sys
-import re
 import Image
 
 FILE_NAME  = 1
@@ -19,12 +18,16 @@ MAX_COLUMN = 240
 class Img2hex(object):
     ''' None '''
     def __init__(self):
+        self.__img_name = None
         self.__img_file = None
         self.__hex_file = None
 
     def open_img(self, img_file):
         try:
             self.__img_file = Image.open(img_file)
+            #TODO improve it
+            self.__img_name = img_file.split('.')[0]
+            self.__img_name = self.__img_name + '.c'
             print 'Image file opened sucessfully'
         except:
             print 'Could not open the image file'
@@ -59,7 +62,6 @@ class Img2hex(object):
         self.__hex_file.write('const unsigned char ')
         self.__hex_file.write('tux')
         self.__hex_file.write('[] = {\n\t')
-
         while row < MAX_ROW:
             column = 0
             while column < MAX_COLUMN:
@@ -78,7 +80,6 @@ class Img2hex(object):
                     self.__hex_file.write(' ')
                 else:
                     self.__hex_file.write(', ')
-
             row = row + 1
             self.__hex_file.write('\n\t')
         self.__hex_file.write('};')
